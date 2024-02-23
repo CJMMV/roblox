@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Kanit', sans-serif;
+
+}
+.banner{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/background.gif);
+        background-position: center;
+        background-size: cover;
+        position: relative;
+}
+nav{
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+}
+nav img{
+    width: 100px;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+.nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: lemonchiffon;
+    text-decoration: none;
+    font-size: 13px;
+}
+.nav-links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+.nav-links ul li:hover::after{
+    width: 100%;
+}
+.text-box{
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.text-box h1{
+    font-size: 62px;
+    color: lemonchiffon;
+}
+.text-box p{
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: #fff;
+}
+.hero-btn{
+    display: inline-table;
+    text-decoration: none;
+    color: lemonchiffon;
+    border: none;
+    padding: 20px 40px;
+    font-size: 13px;
+    background: linear-gradient(to right, #00FFA3, #DC1FFF);
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    z-index: 1;
+    margin-right: 5px;
+    margin-bottom: 12px;
+}
+.hero-btn::before{
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    background: transparent;
+    border-radius: 4px;
+    background-color: black;
+    z-index: -1;
+    transition: 200ms;
+}
+.hero-btn::after{
+    content: attr(data);
+    font-size: 13px;
+    background: linear-gradient(to left, #00FFA3, #DC1FFF);
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: 200ms;
+}
+.hero-btn:hover::before{
+    opacity: 50%;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+.hero-btn:hover::after{
+    color: white;
+}
+
+@media(max-width: 700px){
+    .text-box h1{
+        font-size: 20px;
+    }
+    .nav-links  ul li{
+        display: block;
+    }
+    .nav-links{
+        position: absolute;
+        background: #00FF00;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: 0;
+        text-align: left;
+        z-index: 2;
+    }
+}

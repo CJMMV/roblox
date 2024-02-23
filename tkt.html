@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMV TICKET</title>
+  <link rel="icon" type="image/png" href="images/ticket.png">
+  <link rel="stylesheet" href="style2.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section class="banner">
+    <h1 style="font-weight: bold; color: #fff;"><strong>MMV CHEAT ENGINE ROBUX CODE GENERATOR</strong></h1>
+    <p style="font-weight: bold; color: #fff;"><strong>&nbsp;Make sure to use your Robux code before 20 minutes expires.&nbsp;</strong></p>
+    <div class="code">
+    <p style="font-weight: bold; color: #7cfc00;">Your Robux code is: <span id="ticket-display" style="color: #ADD8E6;"></span></p>
+    <button id="copy-button"><strong>COPY</strong></button>
+</div>
+    <p style="font-weight: bold; color: #fff;">Your ticket expires in: <strong id="countdown" style="color: #ADD8E6;"></strong></p>
+
+    <script>
+      // Check for previously generated ticket in sessionStorage
+      let storedTicket = sessionStorage.getItem('MMV_ticket');
+      let storedExpirationTime = sessionStorage.getItem('MMV_expiration');
+
+      // If ticket exists and hasn't expired, display it
+      if (storedTicket && new Date(storedExpirationTime) > new Date()) {
+        document.getElementById('ticket-display').textContent = storedTicket;
+        const remainingTime = Math.floor((new Date(storedExpirationTime) - new Date()) / 1000);
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+        document.getElementById('countdown').textContent = `${minutes}m ${seconds}s`;
+        startCountdown(remainingTime);
+      } else {
+        // Generate new ticket and update sessionStorage
+        const prefix = "BLOXMMVADMIN";
+        const numDigits = Math.floor(Math.random() * 4) + 7;
+        let randomNumber = '';
+        for (let i = 0; i < numDigits; i++) {
+          randomNumber += Math.floor(Math.random() * 10);
+        }
+        const ticket = prefix + randomNumber;
+        const expirationTime = new Date(Date.now() + 20 * 60 * 1000);
+        sessionStorage.setItem('MMV_ticket', ticket);
+        sessionStorage.setItem('MMV_expiration', expirationTime);
+        document.getElementById('ticket-display').textContent = ticket;
+
+        // Start countdown
+        startCountdown(20 * 60);
+      }
+
+      function startCountdown(seconds) {
+        const interval = setInterval(() => {
+          seconds--;
+          const minutes = Math.floor(seconds / 60);
+          const seconds_ = seconds % 60;
+          document.getElementById('countdown').textContent = `${minutes}m ${seconds_}s`;
+
+          if (seconds <= 0) {
+            document.getElementById('ticket-display').textContent = 'Ticket expired!';
+            sessionStorage.removeItem('MMV_ticket');
+            sessionStorage.removeItem('MMV_expiration');
+            clearInterval(interval);
+          }
+        }, 1000);
+      }
+
+      // Function to copy the code
+      function copyCode() {
+        const codeText = document.getElementById('ticket-display').textContent;
+        navigator.clipboard.writeText(codeText)
+          .then(() => {
+            const copyButton = document.getElementById('copy-button');
+            copyButton.textContent = "Copied!";
+          })
+          .catch(() => {
+            alert("Error copying code!");
+          });
+      }
+
+      // Add event listener to the copy button
+      const copyButton = document.getElementById('copy-button');
+      copyButton.addEventListener('click', copyCode);
+
+    </script>
+ <p id="note"><strong>PLEASE NOTE that you can only generate one ticket per session and if you want another code, <br>you need to go back to the homepage and follow the steps again.</br>Refreshing the page won't work and copying and pasting the url of this page on<br> another tab will give you an invalid and inactivated code.So use this code before</br> it expires and if you want another code, go back and follow through the steps again to get another valid code.</strong></p>
+  </section>
+</body>
+</html>
