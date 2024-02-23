@@ -28,7 +28,7 @@
   color: lemonchiffon;
 }
 
-@media (max-height: 844px){
+@media (max-width: 430px){
   .top{
     width: 100%;
     height: 92vh;
